@@ -1,15 +1,19 @@
 import express from "express";
 import connectDB from "./db/conection";
-import routes from "./routes/userRoutes";
+import postRoutes from "./routes/postRoutes";
+import userRroutes from "./routes/userRoutes";
 
 const app = express();
 
 //middleware para conectar a la base de datos
 connectDB();
 
-app.use(routes);
+app.use(express.json());
 
-app.get("/", (_req, res) => {
+app.use("/user", userRroutes);
+app.use("/post", postRoutes);
+
+app.get("/hello", (_req, res) => {
 	res.send("Hello World!");
 });
 

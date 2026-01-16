@@ -4,6 +4,8 @@
 		"installs",
 		"schemas",
 		"middlewares",
-		"routes"
+		"routes",
+		"test",
+		"controllers"
 	]
 }

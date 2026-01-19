@@ -6,6 +6,7 @@
 		"middlewares",
 		"routes",
 		"test",
-		"controllers"
+		"controllers",
+		"services"
 	]
 }

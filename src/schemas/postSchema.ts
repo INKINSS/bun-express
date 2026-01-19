@@ -4,11 +4,11 @@ const PostSchema = new Schema(
 	{
 		title: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		author: {
 			type: String,
-			require: true,
+			required: true,
 		},
 		contents: {
 			type: String,

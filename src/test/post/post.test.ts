@@ -9,21 +9,18 @@ import { connectMemoryDB, disconnectMemoryDB } from "../setup/mongoMemory";
 
 const samplePost = [
 	{
-		_id: "1",
 		title: "First Post",
 		author: "Alice",
 		contents: "This is the content of the first post.",
 		tags: ["introduction", "welcome"],
 	},
 	{
-		_id: "2",
 		title: "Second Post",
 		author: "Bob",
 		contents: "This is the content of the second post.",
 		tags: ["update", "news"],
 	},
 	{
-		_id: "3",
 		title: "Third Post",
 		author: "Charlie",
 		contents: "This is the content of the third post.",
@@ -31,12 +28,17 @@ const samplePost = [
 	},
 ] as const;
 
+let firstPostId = "";
+
 beforeAll(async () => {
 	await connectMemoryDB();
 	await PostModel.deleteMany({});
 	for (const post of samplePost) {
 		const newPost = new PostModel(post);
-		await newPost.save();
+		const savedPost = await newPost.save();
+		if (post.title === samplePost[0].title) {
+			firstPostId = savedPost._id.toString();
+		}
 	}
 });
 
@@ -62,7 +64,7 @@ describe("get Posts", () => {
 	});
 
 	test("get a post", async () => {
-		const post = await getPostByIdService(samplePost[0]._id);
+		const post = await getPostByIdService(firstPostId);
 		expect(post?.title).toBe(samplePost[0].title);
 	});
 });

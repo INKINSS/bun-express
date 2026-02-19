@@ -13,7 +13,7 @@ export const getPosts = async (_req: Request, res: Response) => {
 		res.send(posts);
 	} catch (error) {
 		console.error(`Error getting posts: ${error as string}`);
-		throw error;
+		return res.status(500).send("error getting posts").end();
 	}
 };
 
@@ -23,7 +23,7 @@ export const getPostById = async (_req: Request, res: Response) => {
 		res.send(postById);
 	} catch (error) {
 		console.error(`Error getting post by id: ${error as string}`);
-		throw error;
+		return res.status(500).send("error getting post by id").end();
 	}
 };
 
@@ -34,7 +34,7 @@ export const createPost = async (req: Request, res: Response) => {
 		res.send(post);
 	} catch (error) {
 		console.error(`Error creating post: ${error as string}`);
-		throw error;
+		return res.status(500).send("error creating post").end();
 	}
 };
 
@@ -47,7 +47,7 @@ export const updatePost = async (_req: Request, res: Response) => {
 		res.send(updatePost);
 	} catch (error) {
 		console.log(`error updating post: ${error as string}`);
-		throw error;
+		return res.status(500).send("error updating post").end();
 	}
 };
 
@@ -57,6 +57,6 @@ export const deletePost = async (req: Request, res: Response) => {
 		res.send(deletePost);
 	} catch (error) {
 		console.log(`error deleting post: ${error as string}`);
-		throw error;
+		return res.status(404).send("error deleting post").end();
 	}
 };

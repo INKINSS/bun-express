@@ -10,8 +10,8 @@ connectDB();
 
 app.use(express.json());
 
-app.use("/user", userRroutes);
-app.use("/post", postRoutes);
+app.use("/api/v1/user", userRroutes);
+app.use("/api/v1/post", postRoutes);
 
 app.get("/hello", (_req, res) => {
 	res.send("Hello World!");
